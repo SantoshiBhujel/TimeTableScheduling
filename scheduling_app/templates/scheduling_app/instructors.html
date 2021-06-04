@@ -1,0 +1,88 @@
+{% extends 'scheduling_app/base.html' %}
+
+{% block title %}
+Instructors
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<div class="section-full p-t80 p-b50 bg-white inner-page-padding">
+    <div class="container">
+
+        <!-- IMAGE CAROUSEL START -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                <!-- TITLE START -->
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Instructors</span> List</h2>
+                            </div>
+                        </div>
+                    </div>                   
+                    <!-- TITLE END -->                                                              
+                    <div class="section-content p-b30">
+                        <div class="mt-accordion acc-bg-gray" id="accordion5">
+                            <div class="panel mt-panel">
+                                <div class="acod-head acc-actives">
+                                    <h6 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne5" data-parent="#accordion5" >
+                                            Instructors List
+                                            <span class="indicator"><i class="fa"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne5" class="acod-body collapse in">
+                                    <div class="acod-content p-tb15">
+                                        <table>
+                                            <thead>
+                                                <th>Instructor ID</th>
+                                                <th>Name</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for instructor in instructors %}
+                                                <tr>
+                                                    <td>{{ instructor.id }}</td>
+                                                    <td>{{ instructor.name }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+            <div class="col-md-6 col-sm-6">
+                <!-- TITLE START -->
+                <div class="section-head">
+                    <div class="mt-separator-outer separator-left">
+                        <div class="mt-separator">
+                            <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span> Instructor</h2>
+                        </div>
+                    </div>
+                </div>                   
+                <form method="POST" action="" > 
+                    {% csrf_token %}
+                    <div class="">
+                        <label for="name">ID</label>
+                        <input type="text" name="id" required>
+                        <span class="spin"></span>
+                    </div>
+                    <div class="">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" required>
+                        <span class="spin"></span>
+                    </div>
+                    <div class="text-center p-t10">
+                        <input type="submit" class="site-button btn-effect" value="Submit Now">
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div> 
+{% endblock %}

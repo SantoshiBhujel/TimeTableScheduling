@@ -1,0 +1,20 @@
+==>  print(variable to inspect)
+
+
+==> import pdb
+    pdb.set_trace()
+
+
+==>pip install ipdb
+    import ipdb
+    ipdb.set_trace()
+
+
+
+==> breakpoint()
+
+
+==> raise Exception(variable to inspect)
+
+
+

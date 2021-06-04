@@ -1,0 +1,15 @@
+pip install django
+django-admin startproject scheduling
+pip install mysqlclient
+
+
+
+
+
+
+
+
+# Note : command for upgrading requirements.txt ==> pip freeze > requirements.txt
+
+
+

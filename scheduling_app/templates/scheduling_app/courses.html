@@ -1,0 +1,135 @@
+{% extends 'scheduling_app/base.html' %}
+
+{% block title %}
+Courses
+{% endblock %}
+
+{% block body %}
+
+{% load static %}
+<div class="section-full p-t80 p-b50 bg-white inner-page-padding">
+    <div class="container">
+
+        <!-- IMAGE CAROUSEL START -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+
+                <!-- TITLE START -->
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Course</span> List</h2>
+                            </div>
+                        </div>
+                    </div>                   
+                    <!-- TITLE END -->                                                              
+                    <div class="section-content p-b30">
+                        <div class="mt-accordion acc-bg-gray" id="accordion5">
+                            <div class="panel mt-panel">
+                                <div class="acod-head acc-actives">
+                                    <h6 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne5" data-parent="#accordion5" >
+                                            Course List
+                                            <span class="indicator"><i class="fa"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne5" class="acod-body collapse in">
+                                    <div class="acod-content p-tb15">
+                                        <table>
+                                            <thead>
+                                                <th>CourseID</th>
+                                                <th>Course</th>
+                                                <th>Sem</th>
+                                                <th>Instructors</th>
+                                                <th>Max no. of students</th>
+                                                <th>Period Per Week</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for course in courses %}
+                                                <tr>
+                                                    <td>{{ course.number }}</td>
+                                                    <td>{{ course.name }}</td>
+                                                    <td>{{ course.sem }}</td>
+                                                    <td>{{ course.instructors.name }}</td>
+                                                    <td>{{ course.maxNoOfStudents }}</td>
+                                                    <td>{{ course.periodPerWeek }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+            <div class="col-md-6 col-sm-6">
+                <!-- TITLE START -->
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span> Course</h2>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form method="POST" action="" > 
+                        {% csrf_token %}
+                        <div class="">
+                            <label for="number">Number</label>
+                            <input type="text" name="number"required>
+                            <span class="spin"></span>
+                        </div>
+                        <div class="">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" required>
+                            <span class="spin"></span>
+                        </div>
+                        
+                        <div class="">
+                            <label for="sem">Sem</label>
+                            <input type="text" name="sem" required>
+                            <span class="spin"></span>
+                        </div> 
+                        
+                        <div class="">
+                            <label for="instructors">Instructors</label>
+                            <select name="instructors">
+                                {% for instructor in instructors %}
+                                    <option value="{{ instructor.instructor_id }}">{{ instructor.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>   
+                        
+                        <div class="">
+                            <label for="instructors">Department</label>
+                            <select name="department">
+                                {% for department in departments %}
+                                    <option value="{{ department.id }}">{{ department.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> 
+
+                        <div class="">
+                            <label for="max">Max No of Students</label>
+                            <input type="text" name="max" required>
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="">
+                            <label for="period">Periods per Week</label>
+                            <input type="text" name="period" required>
+                            <span class="spin"></span>
+                        </div>
+                        
+                        <div class="text-center p-t10">
+                            <input type="submit" class="site-button btn-effect" value="Submit Now">
+                        </div>    
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>                        
+{% endblock %}

@@ -1,0 +1,320 @@
+{% extends 'scheduling_app/base.html' %}
+
+{% block title %}
+TimeTable Scheduling
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<!-- CONTENT START -->
+<div class="page-content">
+
+                                            
+    <!-- SLIDER START -->
+    
+    <div id="welcome_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="goodnews-header">
+        <div id="rev_slider_one" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.3.1">
+            <ul>	
+                <!-- SLIDE 1 -->
+                <li data-index="rs-901" 
+                data-transition="fade" 
+                data-slotamount="default" 
+                data-hideafterloop="0" 
+                data-hideslideonmobile="off"  
+                data-easein="default" 
+                data-easeout="default" 
+                data-masterspeed="default"  
+                data-thumb="{% static 'images/time.jpg' %}"  
+                data-rotate="0"  
+                data-fstransition="fade" 
+                data-fsmasterspeed="300" 
+                data-fsslotamount="7" 
+                data-saveperformance="off"  
+                data-title="" 
+                data-param1="" 
+                data-param2="" 
+                data-param3="" 
+                data-param4="" 
+                data-param5="" 
+                data-param6="" 
+                data-param7="" 
+                data-param8="" 
+                data-param9="" 
+                data-param10="" 
+                data-description="">
+                    <!-- MAIN IMAGE -->
+                    <img src="{% static 'images/time.jpg'%}" alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina=""/>
+                    <!-- LAYERS -->
+                    <!-- LAYER NR. 1 [ for overlay ] -->
+                    <div class="tp-caption tp-shape tp-shapewrapper " 
+                    id="slide-901-layer-0" 
+                    data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                    data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                    data-width="full"
+                    data-height="full"
+                    data-whitespace="nowrap"
+                    data-type="shape" 
+                    data-basealign="slide" 
+                    data-responsive_offset="off" 
+                    data-responsive="off"
+                    data-frames='[
+                    {"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},
+                    {"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}
+                    ]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    
+                    style="z-index: 1;background-color:rgba(0, 0, 0, 0.0);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+                    </div>
+
+                    <!-- LAYER NR. 4 [ for title ] -->
+                    <div class="tp-caption   tp-resizeme" 
+                    id="slide-901-layer-2" 
+                    data-x="['left','left','left','left']" data-hoffset="['50','130','130','130']" 
+                    data-y="['top','top','top','top']" data-voffset="['200','200','140','160']"  
+                    data-fontsize="['72','72','62','52']"
+                    data-lineheight="['82','82','72','62']"
+                    data-width="['700','700','700','96%']"
+                    data-height="['none','none','none','none']"
+                    data-whitespace="['normal','normal','normal','normal']"
+                
+                    data-type="text" 
+                    data-responsive_offset="on" 
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[5,5,5,5]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                
+                    style="z-index: 13; 
+                    white-space: normal; 
+                    font-weight: 700;
+                    color:#111;
+                    border-width:0px;font-family: 'Poppins', sans-serif; text-transform:uppercase ;">
+                    <div>We schedule your time table</div>
+                    
+                    </div>
+            
+                    <div class="tp-caption   tp-resizeme" 
+                    id="slide-901-layer-4" 
+                    data-x="['left','left','left','left']" data-hoffset="['50','130','130','130']" 
+                    data-y="['top','top','top','top']" data-voffset="['370','370','310','260']"  
+                    data-fontsize="['20','20','38','28']"
+                    data-lineheight="['28','28','48','38']"
+                    data-width="['600','600','700','600']"
+                    data-height="['none','none','none','none']"
+                    data-whitespace="['normal','normal','normal','normal']"
+                
+                    data-type="text" 
+                    data-responsive_offset="on" 
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[5,5,5,5]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                
+                    style="z-index: 13; 
+                    white-space: normal; 
+                    font-weight: 500;
+                    color:#111;
+                     border-width:0px;font-family: 'Poppins', sans-serif;">
+                    Time table schedule within clicks
+                    
+                    </div>                                                                   
+                </li>
+                
+                <li data-index="rs-902" 
+                data-transition="fade" 
+                data-slotamount="default" 
+                data-hideafterloop="0" 
+                data-hideslideonmobile="off"  
+                data-easein="default" 
+                data-easeout="default" 
+                data-masterspeed="default"  
+                data-thumb="{% static 'images/time1.jpg'%}"  
+                data-rotate="0"  
+                data-fstransition="fade" 
+                data-fsmasterspeed="300" 
+                data-fsslotamount="7" 
+                data-saveperformance="off"  
+                data-title="" 
+                data-param1="" 
+                data-param2="" 
+                data-param3="" 
+                data-param4="" 
+                data-param5="" 
+                data-param6="" 
+                data-param7="" 
+                data-param8="" 
+                data-param9="" 
+                data-param10="" 
+                data-description="">
+                    <!-- MAIN IMAGE -->
+                    <img src="{% static 'images/time1.jpg'%}" alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="">
+                    <!-- LAYERS -->
+                    <!-- LAYER NR. 1 [ for overlay ] -->
+                    <div class="tp-caption tp-shape tp-shapewrapper " 
+                    id="slide-902-layer-0" 
+                    data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                    data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                    data-width="full"
+                    data-height="full"
+                    data-whitespace="nowrap"
+                    data-type="shape" 
+                    data-basealign="slide" 
+                    data-responsive_offset="off" 
+                    data-responsive="off"
+                    data-frames='[
+                    {"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},
+                    {"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}
+                    ]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    
+                    style="z-index: 1;background-color:rgba(0, 0, 0, 0.0);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+                    </div>
+                                                
+                    <!-- LAYER NR. 4 [ for title ] -->
+                    <div class="tp-caption   tp-resizeme" 
+                    id="slide-902-layer-2" 
+                    data-x="['left','left','left','left']" data-hoffset="['50','130','130','130']" 
+                    data-y="['top','top','top','top']" data-voffset="['200','200','140','160']"  
+                    data-fontsize="['72','72','62','52']"
+                    data-lineheight="['82','82','72','62']"
+                    data-width="['700','700','700','96%']"
+                    data-height="['none','none','none','none']"
+                    data-whitespace="['normal','normal','normal','normal']"
+                
+                    data-type="text" 
+                    data-responsive_offset="on" 
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[5,5,5,5]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                
+                    style="z-index: 13; 
+                    white-space: normal; 
+                    font-weight: 700;
+                    color:#111;
+                    border-width:0px;font-family: 'Poppins', sans-serif; text-transform:uppercase ;">
+                    <div>From concept to creation.</div>
+                    
+                    </div>
+                
+                    <!-- LAYER NR. 5 [ for block] -->
+
+                    <!-- LAYER NR. 5 [ for block] -->
+                    <div class="tp-caption   tp-resizeme" 
+                    id="slide-902-layer-4" 
+                    data-x="['left','left','left','left']" data-hoffset="['50','130','130','130']" 
+                    data-y="['top','top','top','top']" data-voffset="['370','370','310','300']"  
+                    data-fontsize="['20','20','38','28']"
+                    data-lineheight="['28','28','48','38']"
+                    data-width="['600','600','700','600']"
+                    data-height="['none','none','none','none']"
+                    data-whitespace="['normal','normal','normal','normal']"
+                
+                    data-type="text" 
+                    data-responsive_offset="on" 
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    data-textAlign="['left','left','left','left']"
+                    data-paddingtop="[5,5,5,5]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                
+                    style="z-index: 13; 
+                    white-space: normal; 
+                    font-weight: 500;
+                    color:#111;
+                    border-width:0px;font-family: 'Poppins', sans-serif;">
+                    It is a long established fact that a reader will be distracted by the readable content.
+                    
+                    </div>                                                               
+                </li>
+            </ul>
+            <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>	
+        </div>
+    </div>
+    <!-- SLIDER END -->
+    
+    <!-- OUR SPECIALLIZATION START -->
+    <div class="section-full bg-white slider-half-part">
+        <div class="container">
+            <!-- IMAGE CAROUSEL START -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 m-b30">
+                        <div class="half-blocks">
+                            <div class="mt-icon-box-wraper center m-b30">
+                                <div class="half-block-content icon-count-2 p-a30 p-tb50">
+                                    <span class="icon-count-number">1</span>
+                                    <div class="mt-icon-box-lg radius bg-gray m-b20 scale-in-center">
+                                        <span class="icon-cell"><img src="images/icon/compass.png" alt=""></span>
+                                    </div>
+                                    <div class="icon-content">
+                                        <h4 class="mt-tilte m-b25">Architecture Design</h4>
+                                        <p>lorem Ipsum available, but the majority have suffered alterati on in some form, by ious by accident.</p>
+                                        <a href="#" class="site-button-link" data-hover="Read More">Read More <i class="fa fa-angle-right arrow-animation"></i></a>
+                                    </div>
+                                </div>
+                                <div class="bg-cover  half-blocks-bg" style="background-image:url(images/services/1.jpg)"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 m-b30">
+                    <div class="half-blocks">
+                        <div class="mt-icon-box-wraper center m-b30">
+                            <div class="half-block-content icon-count-2 bg-gray p-a30 p-tb50">
+                                <span class="icon-count-number">2</span>
+                                <div class="mt-icon-box-lg radius bg-gray m-b20 scale-in-center">
+                                    <span class="icon-cell"><img src="images/icon/crane-1.png" alt=""></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="mt-tilte m-b25">Building Construction</h4>
+                                    <p>lorem Ipsum available, but the majority have suffered alterati on in some form, by ious by accident.</p>
+                                    <a href="#" class="site-button-link" data-hover="Read More">Read More <i class="fa fa-angle-right arrow-animation"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-cover  half-blocks-bg" style="background-image:url(images/services/3.jpg)"></div>
+                        </div>                                                            
+                    </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 m-b0">
+                        <div class="half-blocks">
+                        <div class="mt-icon-box-wraper center m-b30">
+                            <div class="half-block-content icon-count-2 bg-gray p-a30 p-tb50">
+                                <span class="icon-count-number">3</span>
+                                <div class="mt-icon-box-lg radius bg-gray m-b20 scale-in-center">
+                                    <span class="icon-cell"><img src="images/icon/renovation.png" alt=""></span>
+                                </div>
+                                <div class="icon-content">
+                                    <h4 class="mt-tilte m-b25">Building Renovation</h4>
+                                    <p>lorem Ipsum available, but the majority have suffered alterati on in some form, by ious by accident.</p>
+                                    <a href="#" class="site-button-link" data-hover="Read More">Read More <i class="fa fa-angle-right arrow-animation"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-cover  half-blocks-bg" style="background-image:url(images/services/2.jpg)"></div>
+                        </div>
+                        </div>                              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <!-- OUR SPECIALLIZATION END -->          
+</div>
+<!-- CONTENT END -->
+
+{% endblock %}

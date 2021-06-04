@@ -1,0 +1,116 @@
+{% extends 'scheduling_app/base.html' %}
+
+{% block title %}
+Time
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<div class="section-full p-t80 p-b50 bg-white inner-page-padding">
+    <div class="container">
+
+        <!-- IMAGE CAROUSEL START -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+
+                <!-- TITLE START -->
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Time</span> List</h2>
+                            </div>
+                        </div>
+                    </div>                   
+                    <!-- TITLE END -->                                                              
+                    <div class="section-content p-b30">
+                        <div class="mt-accordion acc-bg-gray" id="accordion5">
+                            <div class="panel mt-panel">
+                                <div class="acod-head acc-actives">
+                                    <h6 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne5" data-parent="#accordion5" >
+                                            Time List
+                                            <span class="indicator"><i class="fa"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne5" class="acod-body collapse in">
+                                    <div class="acod-content p-tb15">
+                                        <table>
+                                            <thead>
+                                                <th>ID</th>
+                                                <th>Day</th>
+                                                <th>Time</th>
+                                            </thead>
+                                            <tbody>
+                                                {% for time in times %}
+                                                <tr>
+                                                    <td>{{ time.meeting_id }}</td>
+                                                    <td>{{ time.day }}</td>
+                                                    <td>{{ time.time }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+            <div class="col-md-6 col-sm-6">
+
+                <!-- TITLE START -->
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span>Time</h2>
+                            </div>
+                        </div>
+                    </div>                   
+                    <!-- <div class="col-md-12 col-sm-12">
+                        <div class="contact-home1-left bg-dark p-a30 m-b0">
+                            
+                        </div>
+                    </div>   -->
+                    
+                    <form method="POST" action="" > 
+                        {% csrf_token %}
+                        <div class="">
+                            <label for="name">Meeting ID</label>
+                            <input type="text" name="id" required>
+                            <span class="spin"></span>
+                        </div>
+                        <div class="">
+                            <label for="name">Day</label>
+                            <select name="day" required>
+                                <option value="SUN">Sunday</option>
+                                <option value="MON">Monday</option>
+                                <option value="TUE">Tueday</option>
+                                <option value="WED">Wednesday</option>
+                                <option value="THU">Thursday</option>
+                                <option value="FRI">Friday</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <label for="name">Start Time</label>
+                            <input type="time" name="start_time" required>
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="">
+                            <label for="name">End Time</label>
+                            <input type="time" name="end_time" required>
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="text-center p-t10">
+                            <input type="submit" class="site-button btn-effect" value="Submit Now">
+                        </div>    
+                    </form>
+            </div>
+        </div>
+    </div>
+    
+</div> 
+{% endblock %}

@@ -1,0 +1,9 @@
+LOAD DATA INFILE 'C:/Users/dhira/Desktop/csvfilename.csv' 
+INTO TABLE `app_table` 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+
+
