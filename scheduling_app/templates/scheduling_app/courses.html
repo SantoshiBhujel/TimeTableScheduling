@@ -74,60 +74,65 @@ Courses
                             </div>
                         </div>
                     </div>
-                    
-                    <form method="POST" action="" > 
-                        {% csrf_token %}
-                        <div class="">
-                            <label for="number">Number</label>
-                            <input type="text" name="number"required>
-                            <span class="spin"></span>
-                        </div>
-                        <div class="">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" required>
-                            <span class="spin"></span>
-                        </div>
-                        
-                        <div class="">
-                            <label for="sem">Sem</label>
-                            <input type="text" name="sem" required>
-                            <span class="spin"></span>
-                        </div> 
-                        
-                        <div class="">
-                            <label for="instructors">Instructors</label>
-                            <select name="instructors">
-                                {% for instructor in instructors %}
-                                    <option value="{{ instructor.instructor_id }}">{{ instructor.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>   
-                        
-                        <div class="">
-                            <label for="instructors">Department</label>
-                            <select name="department">
-                                {% for department in departments %}
-                                    <option value="{{ department.id }}">{{ department.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div> 
+                    <div class="contact-home1-left bg-dark p-a30 m-b0">
+                        <form method="POST" action=""> 
+                            {% csrf_token %}
+                            <div class="">
+                            </div>
+                            <div class="input input-animate">
+                                <label for="number">Course Number</label>
+                                <input type="text" name="number" required>
+                                <span class="spin"></span>
+                            </div>
+                            <div class="input input-animate">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" required>
+                                <span class="spin"></span>
+                            </div>
+                            
+                            <div class="input input-animate">
+                                <label for="sem">Sem</label>
+                                <input type="text" name="sem" required>
+                                <span class="spin"></span>
+                            </div> 
+                            
+                            <div class="input-animate" style="color:white">
+                                <label for="instructors">Instructors</label>
+                                <select name="instructors">
+                                    {% for instructor in instructors %}
+                                        <option value="{{ instructor.instructor_id }}">{{ instructor.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>   
+                            
+                            <div class="input-animate" style="color:white">
+                                <label for="department">Department</label>
+                                <select name="department">
+                                    {% for department in departments %}
+                                        <option value="{{ department.id }}">{{ department.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div> 
 
-                        <div class="">
-                            <label for="max">Max No of Students</label>
-                            <input type="text" name="max" required>
-                            <span class="spin"></span>
-                        </div>
+                            <div class="input input-animate">
+                                <label for="max">Max No of Students</label>
+                                <input type="text" name="max" required>
+                                <span class="spin"></span>
+                            </div>
 
-                        <div class="">
-                            <label for="period">Periods per Week</label>
-                            <input type="text" name="period" required>
-                            <span class="spin"></span>
-                        </div>
-                        
-                        <div class="text-center p-t10">
-                            <input type="submit" class="site-button btn-effect" value="Submit Now">
-                        </div>    
-                    </form>
+                            <div class="input input-animate">
+                                <label for="period">Periods per Week</label>
+                                <input type="text" name="period" required>
+                                <span class="spin"></span>
+                            </div>
+                            
+                            <div class="text-center p-t10">
+                                <button type="submit" class="site-button btn-effect ">
+                                    Submit Now
+                                </button>
+                            </div>    
+                        </form>
+                    </div>
             </div>
         </div>
     </div>

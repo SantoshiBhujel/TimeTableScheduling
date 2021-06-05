@@ -315,14 +315,14 @@ def generate_schedule():
     geneticAlgorithm = GeneticAlgorithm()
     schedule=[]
     while (population.get_schedules()[0].get_fitness() != 1):
-        if(generationNumber==2):
+        if(generationNumber==1):
             break
         generationNumber += 1
         print("\n> Generation # " + str(generationNumber))
         population = geneticAlgorithm.evolve(population)
         population.get_schedules().sort(key=lambda x: x.get_fitness(), reverse=True)
-        # displayMgr.print_generation(population)
-        # displayMgr.print_schedule_as_table(population.get_schedules()[0])
+        displayMgr.print_generation(population)
+        displayMgr.print_schedule_as_table(population.get_schedules()[0])
         schedule.append(population.get_schedules()[0])
     print("\n\n")
     return(schedule[len(schedule)-1])

@@ -65,23 +65,26 @@ Rooms
                             </div>
                         </div>
                     </div>                   
-
-                    <form method="POST" action="" > 
-                        {% csrf_token %}
-                        <div class="">
-                            <label for="name">Number</label>
-                            <input type="text" name="number" required>
-                            <span class="spin"></span>
-                        </div>
-                        <div class="">
-                            <label for="name">Seating Capacity</label>
-                            <input type="text" name="capacity" required>
-                            <span class="spin"></span>
-                        </div>
-                        <div class="text-center p-t10">
-                            <input type="submit" class="site-button btn-effect" value="Submit Now">
-                        </div>    
-                    </form>
+                    <div class="contact-home1-left bg-dark p-a30 m-b0">  
+                        <form method="POST" action="" > 
+                            {% csrf_token %}
+                            <div class="input input-animate">
+                                <label for="name">Number</label>
+                                <input type="text" name="number" required>
+                                <span class="spin"></span>
+                            </div>
+                            <div class="input input-animate">
+                                <label for="name">Seating Capacity</label>
+                                <input type="text" name="capacity" required>
+                                <span class="spin"></span>
+                            </div>
+                            <div class="text-center p-t10">
+                                <button type="submit" class="site-button btn-effect ">
+                                    Submit Now
+                                </button>
+                            </div>    
+                        </form>
+                    </div>
             </div>
         </div>
     </div>

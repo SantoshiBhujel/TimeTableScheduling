@@ -71,30 +71,7 @@ Schedule
                                 </div>
                                 <div id="collapseOne5" class="acod-body collapse in">
                                     <div class="acod-content p-tb15">
-                                        <table>
-                                            <thead>
-                                                <th>Day/Time</th>
-                                                <th>11:15 - 12:15</th>
-                                                <th>12:15 - 01:15</th>
-                                                <th>01:30 - 02:30</th>
-                                                <th>03:00 - 04:00</th>
-                                                <th>04:00 - 05:00</th>
-                                            </thead>
-                                            <tbody>
-                                                {% for class in classes %}
-                                                    <tr>
-                                                        <td>{{ class.get_dept.get_name }}</td>
-                                                        <td>{{ class.get_course.get_name }} ( {{ class.get_course.get_number }} )</td>
-                                                        <td>{{ class.get_room.get_number }} ( {{ class.get_room.get_seatingCapacity }} )</td>
-                                                        <td>{{ class.get_instructor.get_name }} ( {{ class.get_instructor.get_id }} )</td>
-                                                        <td>{{ class.get_meetingTime.get_time }} {{ class.get_meetingTime.get_day }} ( {{ class.get_meetingTime.get_id }} )</td>
-                                                        <!-- {% for r in rou %}
-                                                            <td>{{ r }}</td>
-                                                        {% endfor %}-->
-                                                    </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
+                                            
                                     </div>
                                 </div>
                             </div>

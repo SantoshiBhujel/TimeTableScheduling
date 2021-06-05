@@ -64,24 +64,28 @@ Departments
                 </div>
             <div class="col-md-6 col-sm-6">
                 <!-- TITLE START -->
-                    <div class="section-head">
-                        <div class="mt-separator-outer separator-left">
-                            <div class="mt-separator">
-                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span> Department</h2>
-                            </div>
+                <div class="section-head">
+                    <div class="mt-separator-outer separator-left">
+                        <div class="mt-separator">
+                            <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span> Department</h2>
                         </div>
-                    </div>                                       
-                    <form method="POST" action="" > 
+                    </div>
+                </div>   
+                <div class="contact-home1-left bg-dark p-a30 m-b0">                              
+                    <form method="POST" action=""> 
                         {% csrf_token %}
-                        <div class="">
+                        <div class="input input-animate">
                             <label for="name">Name</label>
                             <input type="text" name="name" required>
                             <span class="spin"></span>
                         </div>
                         <div class="text-center p-t10">
-                            <input type="submit" class="site-button btn-effect" value="Submit Now">
-                        </div>    
+                            <button type="submit" class="site-button btn-effect ">
+                                Submit Now
+                            </button>
+                        </div>     
                     </form>
+                </div>
             </div>
         </div>
     </div>

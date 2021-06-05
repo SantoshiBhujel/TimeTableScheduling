@@ -22,7 +22,7 @@ def course(request):
         course.instructors_id = request.POST.get('instructors')
         course.save()
         
-    courses= Course.objects.all()
+    courses= Course.objects.all().order_by('-id')
     instructors = Instructor.objects.all()
     departments = Department.objects.all()
     context= {
@@ -38,7 +38,7 @@ def instructor(request):
         instructor.id= request.POST.get('id')
         instructor.name= request.POST.get('name')
         instructor.save()
-    instructors = Instructor.objects.all()
+    instructors = Instructor.objects.all().order_by('-instructor_id')
     context= {
         'instructors' : instructors
     }   
@@ -50,7 +50,7 @@ def department(request):
         department.name= request.POST.get('name')
         department.save()
         
-    departments = Department.objects.all()
+    departments = Department.objects.all().order_by('-id')
     context= {
         'departments' : departments
     }   
@@ -66,7 +66,7 @@ def meetingTime(request):
         time.time= start_time +"-"+ end_time
         # print(start_time +"-"+ end_time)
         time.save()
-    times = MeetingTime.objects.all()
+    times = MeetingTime.objects.all().order_by('-meeting_id')
     context= {
         'times' : times
     } 
@@ -79,14 +79,14 @@ def room(request):
         room.seatingCapacity= request.POST.get('capacity')
         room.save()
         
-    rooms = Room.objects.all()
+    rooms = Room.objects.all().order_by('-id')
     context= {
         'rooms' : rooms
     } 
     return render(request,'scheduling_app/room.html',context)
 
 def schedule(request):
-    p = MeetingTime.objects.values('day').distinct().count()
+    p = ['SUN','MON','TUE','WED','THU','FRI']
     schedule=scheduling.generate_schedule()
     classes = schedule.get_classes()
     context={
