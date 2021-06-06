@@ -98,7 +98,8 @@ Courses
                             
                             <div class="input-animate" style="color:white">
                                 <label for="instructors">Instructors</label>
-                                <select name="instructors">
+                                <select name="instructors" style="color:white;">
+                                    <option selected disabled>Select Instructor</option>
                                     {% for instructor in instructors %}
                                         <option value="{{ instructor.instructor_id }}">{{ instructor.name }}</option>
                                     {% endfor %}
@@ -108,9 +109,19 @@ Courses
                             <div class="input-animate" style="color:white">
                                 <label for="department">Department</label>
                                 <select name="department">
+                                    <option selected disabled>Select Department</option>
                                     {% for department in departments %}
                                         <option value="{{ department.id }}">{{ department.name }}</option>
                                     {% endfor %}
+                                </select>
+                            </div> 
+
+                            <div class="input-animate" style="color:white">
+                                <label for="department">Course Type</label>
+                                <select name="type">
+                                    <option selected disabled>Select Course Type</option>
+                                    <option value="TH">Theory</option>
+                                    <option value="LAB">Lab</option>
                                 </select>
                             </div> 
 

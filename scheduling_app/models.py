@@ -14,6 +14,7 @@ class Instructor(models.Model):
 class Room(models.Model):
     number = models.CharField(max_length=200)
     seatingCapacity = models.CharField(max_length=200)
+    type= models.CharField(max_length=20,default="TH")
     
     def get_number(self): return self.number
     def get_seatingCapacity(self): return self.seatingCapacity
@@ -45,6 +46,7 @@ class Course(models.Model):
     maxNoOfStudents = models.IntegerField(default=25)
     periodPerWeek = models.IntegerField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    type= models.CharField(max_length=20,default="TH")
     
     def get_id(self): return self.id
     def get_name(self): return self.name

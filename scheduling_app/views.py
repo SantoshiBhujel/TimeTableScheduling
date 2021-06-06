@@ -20,6 +20,7 @@ def course(request):
         course.periodPerWeek= request.POST.get('period')
         course.department_id= request.POST.get('department')
         course.instructors_id = request.POST.get('instructors')
+        course.type = request.POST.get('type')
         course.save()
         
     courses= Course.objects.all().order_by('-id')
@@ -77,6 +78,7 @@ def room(request):
         room = Room()        
         room.number= request.POST.get('number')
         room.seatingCapacity= request.POST.get('capacity')
+        room.type = request.POST.get('type')
         room.save()
         
     rooms = Room.objects.all().order_by('-id')

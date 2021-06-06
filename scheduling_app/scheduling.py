@@ -18,7 +18,7 @@ class Data:
         times = MT.objects.all()
 
         for room in rooms:
-            self._rooms.append(Room(room.number, room.seatingCapacity)) #print(self.ROOMS[0][0], self.ROOMS[0][1]) print(self._rooms)
+            self._rooms.append(Room(room.number, room.seatingCapacity, room.type)) #print(self.ROOMS[0][0], self.ROOMS[0][1]) print(self._rooms)
         
         for time in times:
             self._meetingTimes.append(MeetingTime(time.id, time.day, time.time))
@@ -27,12 +27,12 @@ class Data:
             self._instructors.append(Instructor(instructor.id, instructor.name))  
 
         for i in range(len(courses)):
-            self._courses.append(Course(courses[i].number, courses[i].name, courses[i].sem,[Instructor(courses[i].instructors.id,courses[i].instructors.name)],courses[i].maxNoOfStudents, courses[i].periodPerWeek)) #[] removed from instructor     
+            self._courses.append(Course(courses[i].number, courses[i].name, courses[i].sem,[Instructor(courses[i].instructors.id,courses[i].instructors.name)],courses[i].maxNoOfStudents, courses[i].periodPerWeek, courses[i].type)) #[] removed from instructor     
         
         self._dept_course=[]
         for i in range(len(departments)):
             for courses in departments[i].course_set.all():
-                self._dept_course.append(Course(courses.number, courses.name, courses.sem,[Instructor(courses.instructors.id,courses.instructors.name)],courses.maxNoOfStudents, courses.periodPerWeek))
+                self._dept_course.append(Course(courses.number, courses.name, courses.sem,[Instructor(courses.instructors.id,courses.instructors.name)],courses.maxNoOfStudents, courses.periodPerWeek, courses.type))
             self._depts.append(Department(departments[i].name,self._dept_course))
             self._dept_course=[]
         
@@ -57,9 +57,14 @@ class Schedule:
         self._rooms= main_Data().get_rooms()
         self._meetingTimes = main_Data().get_meetingTimes()
         self._room_time = []
+        self._lab_time =[]
         for i in range(0, len(self._rooms)):
-            for j in range(0, len(self._meetingTimes)):
-                self._room_time.append([self._rooms[i], self._meetingTimes[j]])
+            if self._rooms[i].get_type()=="TH":
+                for j in range(0, len(self._meetingTimes)):
+                    self._room_time.append([self._rooms[i], self._meetingTimes[j]])
+            if self._rooms[i].get_type()=="LAB":
+                for j in range(0, len(self._meetingTimes)):
+                    self._lab_time.append([self._rooms[i], self._meetingTimes[j]])
     def get_classes(self):
         self._isFitnessChanged = True
         return self._classes
@@ -159,19 +164,21 @@ class GeneticAlgorithm:
             tournament_pop.get_schedules().sort(key=lambda x: x.get_fitness(), reverse=True)
             return tournament_pop
 class Course:
-    def __init__(self, number, name, sem, instructors, maxNumbOfStudents,periodPerWeek):
+    def __init__(self, number, name, sem, instructors, maxNumbOfStudents,periodPerWeek, type):
         self._number = number
         self._name = name
         self._sem = sem
         self._instructors= instructors
         self._maxNumbOfStudents = maxNumbOfStudents
         self._periodPerWeek = periodPerWeek
+        self._type = type
     def get_number(self): return self._number
     def get_name(self): return self._name
     def get_sem(self): return self._sem
     def get_instructors(self): return self._instructors
     def get_maxNumbOfStudents(self): return self._maxNumbOfStudents
     def get_periodPerWeek(self): return self._periodPerWeek
+    def get_type(self): return self._type
     def __str__(self): return self._name
 class Instructor:
     def __init__(self, id, name):
@@ -181,11 +188,13 @@ class Instructor:
     def get_name(self): return self._name
     def __str__(self): return self._name
 class Room:
-    def __init__(self, number, seatingCapacity):
+    def __init__(self, number, seatingCapacity, type):
         self._number = number
         self._seatingCapacity = seatingCapacity
+        self._type = type
     def get_number(self): return self._number
     def get_seatingCapacity(self): return self._seatingCapacity
+    def get_type(self): return self._type
 class MeetingTime:
     def __init__(self, id, day, time):
         self._id = id

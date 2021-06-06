@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 04, 2021 at 02:24 PM
+-- Generation Time: Jun 06, 2021 at 03:58 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -280,6 +280,7 @@ CREATE TABLE `scheduling_app_course` (
   `number` varchar(200) NOT NULL,
   `sem` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT 'TH',
   `maxNoOfStudents` int(11) NOT NULL,
   `periodPerWeek` int(11) NOT NULL,
   `department_id` bigint(20) NOT NULL,
@@ -290,27 +291,30 @@ CREATE TABLE `scheduling_app_course` (
 -- Dumping data for table `scheduling_app_course`
 --
 
-INSERT INTO `scheduling_app_course` (`id`, `number`, `sem`, `name`, `maxNoOfStudents`, `periodPerWeek`, `department_id`, `instructors_id`) VALUES
-(1, 'CSC109', 1, 'Introduction to Information Technology', 48, 5, 1, 1),
-(2, 'CSC110	', 1, 'C', 48, 5, 1, 2),
-(3, 'CSC111	', 1, 'Digital Logic', 48, 4, 1, 3),
-(5, 'MTH112	', 1, 'Mathematics I', 48, 6, 1, 4),
-(6, 'PHY113	', 1, 'Physics', 48, 5, 1, 5),
-(7, 'CSC160	', 2, 'Discrete Structure', 48, 4, 1, 6),
-(8, 'CSC161	', 2, 'Object-Oriented Programming', 48, 4, 1, 7),
-(9, 'CSC162	', 2, 'Microprocessor', 48, 3, 1, 8),
-(10, 'MTH163	', 2, 'Mathematics II', 48, 5, 1, 4),
-(11, 'STA164	', 2, 'Statistics I', 48, 5, 1, 9),
-(12, 'CSC206	', 3, 'Data Structure and Algorithm', 48, 4, 1, 2),
-(13, 'CSC207	', 3, 'Numerical Method', 48, 3, 1, 3),
-(14, 'CSC208	', 3, 'Computer Architecture', 48, 3, 1, 1),
-(15, 'CSC209', 3, 'Computer Graphics', 48, 4, 1, 10),
-(16, 'STA210	', 3, 'Statistics II', 48, 5, 1, 11),
-(17, 'CSC257	', 4, 'Theory of Computation', 48, 4, 1, 12),
-(18, 'CSC258	', 4, 'Computer Networks', 48, 4, 1, 14),
-(19, 'CSC259', 4, 'Operating Systems', 48, 3, 1, 13),
-(20, 'CSC260', 4, 'Database Management System', 48, 4, 1, 7),
-(21, 'CSC261	', 4, 'Artificial Intelligence', 48, 5, 1, 15);
+INSERT INTO `scheduling_app_course` (`id`, `number`, `sem`, `name`, `type`, `maxNoOfStudents`, `periodPerWeek`, `department_id`, `instructors_id`) VALUES
+(1, 'CSC109', 1, 'Introduction to Information Technology', 'TH', 48, 5, 1, 1),
+(2, 'CSC110	', 1, 'C', 'TH', 48, 5, 1, 2),
+(3, 'CSC111	', 1, 'Digital Logic', 'TH', 48, 4, 1, 3),
+(5, 'MTH112	', 1, 'Mathematics I', 'TH', 48, 6, 1, 4),
+(6, 'PHY113	', 1, 'Physics', 'TH', 48, 5, 1, 5),
+(7, 'CSC160	', 2, 'Discrete Structure', 'TH', 48, 4, 1, 6),
+(8, 'CSC161	', 2, 'Object-Oriented Programming', 'TH', 48, 4, 1, 7),
+(9, 'CSC162	', 2, 'Microprocessor', 'TH', 48, 3, 1, 8),
+(10, 'MTH163	', 2, 'Mathematics II', 'TH', 48, 5, 1, 4),
+(11, 'STA164	', 2, 'Statistics I', 'TH', 48, 5, 1, 9),
+(12, 'CSC206	', 3, 'Data Structure and Algorithm', 'TH', 48, 4, 1, 2),
+(13, 'CSC207	', 3, 'Numerical Method', 'TH', 48, 3, 1, 3),
+(14, 'CSC208	', 3, 'Computer Architecture', 'TH', 48, 3, 1, 1),
+(15, 'CSC209', 3, 'Computer Graphics', 'TH', 48, 4, 1, 10),
+(16, 'STA210	', 3, 'Statistics II', 'TH', 48, 5, 1, 11),
+(17, 'CSC257	', 4, 'Theory of Computation', 'TH', 48, 4, 1, 12),
+(18, 'CSC258	', 4, 'Computer Networks', 'TH', 48, 4, 1, 14),
+(19, 'CSC259', 4, 'Operating Systems', 'TH', 48, 3, 1, 13),
+(20, 'CSC260', 4, 'Database Management System', 'TH', 48, 4, 1, 7),
+(21, 'CSC261	', 4, 'Artificial Intelligence', 'TH', 48, 5, 1, 15),
+(22, 'CSC306', 5, 'Compiler', 'TH', 48, 5, 1, 19),
+(23, 'CSC307', 5, 'DAA', 'TH', 48, 5, 1, 16),
+(24, 'CSC38', 5, 'RTOS', 'TH', 48, 5, 1, 24);
 
 -- --------------------------------------------------------
 
@@ -432,19 +436,21 @@ INSERT INTO `scheduling_app_meetingtime` (`meeting_id`, `id`, `day`, `time`) VAL
 CREATE TABLE `scheduling_app_room` (
   `id` bigint(20) NOT NULL,
   `number` varchar(200) NOT NULL,
-  `seatingCapacity` varchar(200) NOT NULL
+  `seatingCapacity` varchar(200) NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT 'TH'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `scheduling_app_room`
 --
 
-INSERT INTO `scheduling_app_room` (`id`, `number`, `seatingCapacity`) VALUES
-(1, 'R1', '50'),
-(2, 'R2', '50'),
-(3, 'R3', '45'),
-(4, 'R4', '50'),
-(5, 'R5', '45');
+INSERT INTO `scheduling_app_room` (`id`, `number`, `seatingCapacity`, `type`) VALUES
+(1, 'R1', '50', 'TH'),
+(2, 'R2', '50', 'TH'),
+(3, 'R3', '45', 'TH'),
+(4, 'R4', '50', 'TH'),
+(5, 'R5', '45', 'TH'),
+(6, 'LAB 1', '50', 'LAB');
 
 --
 -- Indexes for dumped tables
@@ -617,7 +623,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `scheduling_app_course`
 --
 ALTER TABLE `scheduling_app_course`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `scheduling_app_department`
@@ -641,7 +647,7 @@ ALTER TABLE `scheduling_app_meetingtime`
 -- AUTO_INCREMENT for table `scheduling_app_room`
 --
 ALTER TABLE `scheduling_app_room`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
