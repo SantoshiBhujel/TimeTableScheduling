@@ -65,6 +65,8 @@ class Schedule:
             if self._rooms[i].get_type()=="LAB":
                 for j in range(0, len(self._meetingTimes)):
                     self._lab_time.append([self._rooms[i], self._meetingTimes[j]])
+    
+        # print(self._room_time)
     def get_classes(self):
         self._isFitnessChanged = True
         return self._classes
@@ -75,23 +77,35 @@ class Schedule:
             self._isFitnessChanged = False
         return self._fitness
     def get_roomTime(self): return self._room_time
+    def get_labTime(self): return self._lab_time
     def initialize(self):
         depts = self._data.get_depts()
         room_time = self.get_roomTime()
+        lab_time = self.get_labTime()
         for i in range(0, len(depts)):
             courses = depts[i].get_courses() #courses of each department
             for j in range(0, len(courses)): #for each courses (of a department retrieved from data)
                 for k in range(0,courses[j].get_periodPerWeek()):
                     newClass = Class(self._classNumb, depts[i], courses[j]) # initialize new Class(with dept[i] and courses[j] i.e. every department ko every course)
                     self._classNumb += 1
-                    if(len(room_time)==0):
-                        break
-                    randomIndex=rnd.randrange(0,len(room_time))
-                    newClass.set_meetingTime(room_time[randomIndex][1])
-                    newClass.set_room(room_time[randomIndex][0])
-                    newClass.set_instructor(courses[j].get_instructors()[rnd.randrange(0,len(courses[j].get_instructors()))])
-                    room_time.pop(randomIndex)
-                    self._classes.append(newClass)
+                    if courses[j].get_type()=="TH":
+                        randomIndex=rnd.randrange(0,len(room_time))
+                        newClass.set_meetingTime(room_time[randomIndex][1])
+                        newClass.set_room(room_time[randomIndex][0])
+                        newClass.set_instructor(courses[j].get_instructors()[rnd.randrange(0,len(courses[j].get_instructors()))])
+                        room_time.pop(randomIndex)
+                        # self._classes.append(newClass)
+                    if courses[j].get_type()=="LAB":
+                        randomIndex=rnd.randrange(0,len(lab_time))
+                        newClass.set_meetingTime(lab_time[randomIndex][1])
+                        newClass.set_room(lab_time[randomIndex][0])
+                        newClass.set_instructor(courses[j].get_instructors()[rnd.randrange(0,len(courses[j].get_instructors()))])
+                        lab_time.pop(randomIndex)
+                        
+                    # for i in range(0,len(self._classes)):
+                    #     if self._classes[i].get_course().get_sem()==newClass.get_course().get_sem() and self._classes[i].get_meetingTime()== newClass.get_MeetingTime():
+                    #         self.set_Class()
+                    self._classes.append(newClass)          
         return self
     def calculate_fitness(self):
         self._numbOfConflicts= 0
@@ -319,8 +333,8 @@ def generate_schedule():
     print("\nGeneration: " + str(generationNumber))
     population = Population(POPULATION_SIZE)
     population.get_schedules().sort(key=lambda x: x.get_fitness(),reverse=True)
-    displayMgr.print_generation(population)
-    displayMgr.print_schedule_as_table(population.get_schedules()[0])
+    # displayMgr.print_generation(population)
+    # displayMgr.print_schedule_as_table(population.get_schedules()[0])
     geneticAlgorithm = GeneticAlgorithm()
     schedule=[]
     while (population.get_schedules()[0].get_fitness() != 1):
@@ -334,4 +348,5 @@ def generate_schedule():
         displayMgr.print_schedule_as_table(population.get_schedules()[0])
         schedule.append(population.get_schedules()[0])
     print("\n\n")
+    print(len(schedule))
     return(schedule[len(schedule)-1])

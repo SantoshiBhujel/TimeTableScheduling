@@ -43,6 +43,7 @@ Courses
                                                 <th>Course</th>
                                                 <th>Sem</th>
                                                 <th>Instructors</th>
+                                                <th>TH/LAB</th>
                                                 <th>Max no. of students</th>
                                                 <th>Period Per Week</th>
                                             </thead>
@@ -53,6 +54,7 @@ Courses
                                                     <td>{{ course.name }}</td>
                                                     <td>{{ course.sem }}</td>
                                                     <td>{{ course.instructors.name }}</td>
+                                                    <td>{{ course.type }}</td>
                                                     <td>{{ course.maxNoOfStudents }}</td>
                                                     <td>{{ course.periodPerWeek }}</td>
                                                 </tr>
@@ -74,8 +76,18 @@ Courses
                             </div>
                         </div>
                     </div>
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                            {% for err in form%}
+                                <small class="text-danger">{{ err }}</small>  
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                     <div class="contact-home1-left bg-dark p-a30 m-b0">
-                        <form method="POST" action=""> 
+                        
+                        <form method="POST" action="{% url 'scheduling:storeCourse' %}"> 
                             {% csrf_token %}
                             <div class="">
                             </div>
@@ -127,13 +139,13 @@ Courses
 
                             <div class="input input-animate">
                                 <label for="max">Max No of Students</label>
-                                <input type="text" name="max" required>
+                                <input type="text" name="maxNoOfStudents" required>
                                 <span class="spin"></span>
                             </div>
 
                             <div class="input input-animate">
                                 <label for="period">Periods per Week</label>
-                                <input type="text" name="period" required>
+                                <input type="text" name="periodPerWeek" required>
                                 <span class="spin"></span>
                             </div>
                             

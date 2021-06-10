@@ -3,6 +3,7 @@ from .models import Course, Instructor, Room, MeetingTime, Department
 from django.template import loader
 from django.shortcuts import redirect, render, get_object_or_404
 from . import scheduling
+from .forms import CourseForm
 
 # Create your views here.
 
@@ -10,28 +11,33 @@ def index(request):
     return render(request,'scheduling_app/index.html')
 
 def course(request):
-    if request.method == 'POST':
-        print("inside post")
-        course=Course()
-        course.number= request.POST.get('number')
-        course.sem= request.POST.get('sem')
-        course.name= request.POST.get('name')
-        course.maxNoOfStudents= request.POST.get('max')
-        course.periodPerWeek= request.POST.get('period')
-        course.department_id= request.POST.get('department')
-        course.instructors_id = request.POST.get('instructors')
-        course.type = request.POST.get('type')
-        course.save()
-        
     courses= Course.objects.all().order_by('-id')
     instructors = Instructor.objects.all()
     departments = Department.objects.all()
     context= {
-        'courses' : courses,
-        'instructors' : instructors,
-        'departments' : departments
-    }  
+                'courses' : courses,
+                'instructors' : instructors,
+                'departments' : departments,
+                'form':''
+            }
     return render(request,'scheduling_app/courses.html',context)
+
+def storeCourse(request):
+    if request.method == 'POST':
+        course=Course()
+        form=CourseForm(request.POST, instance = course) 
+        if form.is_valid():
+            form.save()
+            response = redirect('/course/')
+            return response
+        else:
+            context= {
+                'courses' : Course.objects.all().order_by('-id'),
+                'instructors' : Instructor.objects.all(),
+                'departments' : Department.objects.all(),
+                'form':form
+            }
+            return render(request,'scheduling_app/courses.html',context)
 
 def instructor(request):
     if request.method == 'POST':
