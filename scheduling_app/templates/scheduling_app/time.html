@@ -61,57 +61,56 @@ Time
             <div class="col-md-6 col-sm-6">
 
                 <!-- TITLE START -->
-                    <div class="section-head">
-                        <div class="mt-separator-outer separator-left">
-                            <div class="mt-separator">
-                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span>Time</h2>
-                            </div>
+                <div class="section-head">
+                    <div class="mt-separator-outer separator-left">
+                        <div class="mt-separator">
+                            <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Add</span>Time</h2>
                         </div>
-                    </div>                   
-                    <!-- <div class="col-md-12 col-sm-12">
-                        <div class="contact-home1-left bg-dark p-a30 m-b0">
-                            
-                        </div>
-                    </div>   -->
-                    <div class="contact-home1-left bg-dark p-a30 m-b0">  
-                        <form method="POST" action="" > 
-                            {% csrf_token %}
-                            <div class="input input-animate">
-                                <label for="name">Meeting ID</label>
-                                <input type="text" name="id" required>
-                                <span class="spin"></span>
-                            </div>
-                            <div class="input-animate" style="color:white">
-                                <label for="name">Day</label>
-                                <select name="day" required>
-                                    <option value="SUN">Sunday</option>
-                                    <option value="MON">Monday</option>
-                                    <option value="TUE">Tueday</option>
-                                    <option value="WED">Wednesday</option>
-                                    <option value="THU">Thursday</option>
-                                    <option value="FRI">Friday</option>
-                                </select>
-                            </div>
-                            <div style="color:white">
-                                <label for="name">Start Time</label>
-                                <input type="time" name="start_time" required>
-                                <span class="spin"></span>
-                            </div>
-
-                            <div style="color:white">
-                                <label for="name">End Time</label>
-                                <input type="time" name="end_time" required>
-                                <span class="spin"></span>
-                            </div>
-
-                            <div class="text-center p-t10">
-                                <button type="submit" class="site-button btn-effect ">
-                                    Submit Now
-                                </button>
-                            </div>    
-                        </form>
                     </div>
+                </div>                   
+                <!-- <div class="col-md-12 col-sm-12">
+                    <div class="contact-home1-left bg-dark p-a30 m-b0">
+                        
+                    </div>
+                </div>   -->
+                <div class="contact-home1-left bg-dark p-a30 m-b0">  
+                    <form method="POST" action="{% url 'scheduling:storeMeetingTime' %}" > 
+                        {% csrf_token %}
+                        <div class="input input-animate">
+                            <label for="name">Meeting ID</label>
+                            <input type="text" name="id" required>
+                            <span class="spin"></span>
+                        </div>
+                        <div class="input-animate" style="color:white">
+                            <label for="name">Day</label>
+                            <select name="day" required>
+                                <option value="SUN">Sunday</option>
+                                <option value="MON">Monday</option>
+                                <option value="TUE">Tueday</option>
+                                <option value="WED">Wednesday</option>
+                                <option value="THU">Thursday</option>
+                                <option value="FRI">Friday</option>
+                            </select>
+                        </div>
+                        <div style="color:white">
+                            <label for="name">Start Time</label>
+                            <input type="time" name="start_time" required style="color:black">
+                            <span class="spin"></span>
+                        </div>
 
+                        <div style="color:white">
+                            <label for="name">End Time</label>
+                            <input type="time" name="end_time" style="color:black" required>
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="text-center p-t10">
+                            <button type="submit" class="site-button btn-effect ">
+                                Submit Now
+                            </button>
+                        </div>    
+                    </form>
+                </div>
             </div>
         </div>
     </div>

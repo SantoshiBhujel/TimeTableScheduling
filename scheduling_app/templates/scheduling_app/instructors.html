@@ -65,7 +65,7 @@ Instructors
                     </div>
                 </div>    
                 <div class="contact-home1-left bg-dark p-a30 m-b0">             
-                    <form method="POST" action="" > 
+                    <form method="POST" action="{% url 'scheduling:storeInstructor' %}" > 
                         {% csrf_token %}
                         <div class="input input-animate">
                             <label for="name">ID</label>

@@ -3,7 +3,7 @@ from .models import Course, Instructor, Room, MeetingTime, Department
 from django.template import loader
 from django.shortcuts import redirect, render, get_object_or_404
 from . import scheduling
-from .forms import CourseForm
+from .forms import CourseForm, InstructorForm, DepartmentForm, RoomForm, MeetingTimeForm
 
 # Create your views here.
 
@@ -40,30 +40,52 @@ def storeCourse(request):
             return render(request,'scheduling_app/courses.html',context)
 
 def instructor(request):
-    if request.method == 'POST':
-        instructor=Instructor()
-        instructor.id= request.POST.get('id')
-        instructor.name= request.POST.get('name')
-        instructor.save()
-    instructors = Instructor.objects.all().order_by('-instructor_id')
     context= {
-        'instructors' : instructors
+        'instructors' : Instructor.objects.all().order_by('-instructor_id')
     }   
     return render(request,'scheduling_app/instructors.html',context)
 
-def department(request):
+def storeInstructor(request):
     if request.method == 'POST':
-        department = Department()        
-        department.name= request.POST.get('name')
-        department.save()
-        
-    departments = Department.objects.all().order_by('-id')
+        instructor=Instructor()
+        form=InstructorForm(request.POST, instance = instructor) 
+        if form.is_valid():
+            form.save()
+            return redirect('/instructor/')
+        else:
+            context= {
+                'instructors' : Instructor.objects.all().order_by('-instructor_id'),
+                'form':form
+            }
+            return render(request,'scheduling_app/courses.html',context)
+
+def department(request):
     context= {
-        'departments' : departments
+        'departments' : Department.objects.all().order_by('-id')
     }   
     return render(request,'scheduling_app/department.html',context)
 
+def storeDepartment(request):
+    if request.method == 'POST':
+        department=Department()
+        form=DepartmentForm(request.POST, instance = department) 
+        if form.is_valid():
+            form.save()
+            return redirect('/department/')
+        else:
+            context= {
+                'departments' :Department.objects.all().order_by('-id'),
+                'form':form
+            }
+            return render(request,'scheduling_app/department.html',context)
+
 def meetingTime(request):
+    context= {
+        'times' : MeetingTime.objects.all().order_by('-meeting_id')
+    } 
+    return render(request,'scheduling_app/time.html',context)
+
+def storeMeetingTime(request):
     if request.method == 'POST':
         time = MeetingTime()        
         time.id= request.POST.get('id')
@@ -71,27 +93,48 @@ def meetingTime(request):
         start_time = request.POST.get('start_time')
         end_time = request.POST.get('end_time')
         time.time= start_time +"-"+ end_time
-        # print(start_time +"-"+ end_time)
         time.save()
-    times = MeetingTime.objects.all().order_by('-meeting_id')
-    context= {
-        'times' : times
-    } 
-    return render(request,'scheduling_app/time.html',context)
+        return redirect('/meeting-time/')
+    # if request.method == 'POST':
+    #     print("dakandsnmmn,sad,mnmfadmma")
+    #     form=MeetingTimeForm(request.POST)
+    #     if form.is_valid():
+    #         print("dakandsnmmn,sad,mnmfadmma")
+    #         time = MeetingTime()        
+    #         time.id= request.POST.get('id')
+    #         time.day= request.POST.get('day')
+    #         start_time = request.POST.get('start_time')
+    #         end_time = request.POST.get('end_time')
+    #         time.time= start_time +"-"+ end_time
+    #         # print(start_time +"-"+ end_time)
+    #         time.save()
+    #         return redirect('/meeting-time/')
+    #     else:
+    #         context= {
+    #             'times' : MeetingTime.objects.all().order_by('-meeting_id'),
+    #             'form':form
+    #         } 
+    # return render(request,'scheduling_app/time.html',context)
 
 def room(request):
-    if request.method == 'POST':
-        room = Room()        
-        room.number= request.POST.get('number')
-        room.seatingCapacity= request.POST.get('capacity')
-        room.type = request.POST.get('type')
-        room.save()
-        
-    rooms = Room.objects.all().order_by('-id')
     context= {
-        'rooms' : rooms
+        'rooms' : Room.objects.all().order_by('-id')
     } 
     return render(request,'scheduling_app/room.html',context)
+
+def storeRoom(request):
+    if request.method == 'POST':
+        room=Room()
+        form=RoomForm(request.POST, instance = room) 
+        if form.is_valid():
+            form.save()
+            return redirect('/room/')
+        else:
+            context= {
+                'rooms' :Room.objects.all().order_by('-id'),
+                'form':form
+            }
+            return render(request,'scheduling_app/room.html',context)
 
 def schedule(request):
     p = ['SUN','MON','TUE','WED','THU','FRI']
