@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from .models import Course, Instructor, Room, MeetingTime, Department
+from .models import Course, Instructor, Room, MeetingTime, Department, Semester
 from django.template import loader
 from django.shortcuts import redirect, render, get_object_or_404
 from . import scheduling
@@ -71,6 +71,15 @@ def storeDepartment(request):
         form=DepartmentForm(request.POST, instance = department) 
         if form.is_valid():
             form.save()
+            # department.name= request.POST.get('name')
+            # department= department.save()
+            # print('department:', department)
+            # sems=[1,2,3,4,5,6,7,8]
+            # for i in range(0, len(sems)):
+            #     sem=Semester()
+            #     sem.department_id=department.id
+            #     sem.sem=sems[i]
+            #     sem.save()
             return redirect('/department/')
         else:
             context= {
@@ -138,6 +147,11 @@ def storeRoom(request):
 
 def schedule(request):
     p = ['SUN','MON','TUE','WED','THU','FRI']
+    Course.objects.all().update(status=0)
+    for department in request.POST.getlist('departments'):
+        for sem in request.POST.getlist(department):
+            Course.objects.filter(department_id=department , sem=sem).update(status=1)
+    
     schedule=scheduling.generate_schedule()
     classes = schedule.get_classes()
     context={
@@ -145,3 +159,11 @@ def schedule(request):
         'p' : p
     }
     return render(request,'scheduling_app/schedule.html',context)
+
+def scheduleSem(request):
+    depts = Department.objects.all()
+    context={
+        'departments': depts,
+        'sems': ['1','2','3','4','5','6','7','8']
+    }
+    return render(request,'scheduling_app/class.html',context)

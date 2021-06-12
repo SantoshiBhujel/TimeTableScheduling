@@ -47,7 +47,12 @@ class Course(models.Model):
     periodPerWeek = models.IntegerField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     type= models.CharField(max_length=20,default="TH")
+    status = models.CharField(max_length=20)
     
     def get_id(self): return self.id
     def get_name(self): return self.name
     def __str__(self): return self.name
+    
+class Semester(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    sem = models.IntegerField()

@@ -1,0 +1,108 @@
+{% extends 'scheduling_app/base.html' %}
+
+{% block title %}
+Rooms
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<!-- <div class="section-full p-t80 p-b50 bg-white inner-page-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="section-head">
+                        <div class="mt-separator-outer separator-left">
+                            <div class="mt-separator">
+                                <h2 class="text-uppercase sep-line-one "><span class="font-weight-300 text-primary">Rooms</span> List</h2>
+                            </div>
+                        </div>
+                    </div>                                                                              
+                    <div class="section-content p-b30">
+                        <div class="mt-accordion acc-bg-gray" id="accordion5">
+                            <div class="panel mt-panel">
+                                <div class="acod-head acc-actives">
+                                    <h6 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne5" data-parent="#accordion5" >
+                                            Active Classes
+                                            <span class="indicator"><i class="fa"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <form action="">
+                                    <div id="collapseOne5" class="acod-body collapse in">
+                                        <div class="acod-content p-tb15">
+                                            <table>
+                                                <thead>
+                                                   
+                                                </thead>
+                                                <tbody>
+                                                    {% for dept in departments %}
+                                                        <tr>
+                                                            <label>Department</label>
+                                                            <input type="text" name="name[]"/> {{ dept.name }}<br/><br/>
+                                                            
+                                                            <td>
+                                                            {% for i in sems %}
+                                                            <input type="checkbox" name="{{ dept.name }}sems[]" value="{{ i }}" style="color:black">{{ i }}
+                                                            {% endfor %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  -->
+<div class="container">
+    <div class="section-content">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+<form action="{% url 'scheduling:schedule' %}" method="POST">
+    <!-- <input type="checkbox" name="vehicle1" value="Bike">
+    <label for="vehicle1"> I have a bike</label><br>
+    <input type="checkbox" name="vehicle2" value="Car">
+    <label for="vehicle2"> I have a car</label><br>
+    <input type="checkbox" name="vehicle3" value="Boat" checked>
+    <label for="vehicle3"> I have a boat</label><br><br> -->
+
+    {% csrf_token %}
+    <table>
+        <thead>
+            <th>Department</th>
+            <th>Sem</th>
+        </thead>
+        <tbody>
+            
+    {% for dept in departments %}
+        <tr>
+            <td>
+                <label for="vehicle1"> {{ dept.name }}</label>
+                <input type="hidden" name="departments"  value="{{ dept.id }}">
+            </td>
+            <td>
+            {% for i in sems %}
+                <input type="checkbox" name="{{ dept.id }}" value="{{ i }}" style="color:black">{{ i }}
+            {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+    </table>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -15,5 +15,6 @@ urlpatterns = [
     path('meeting-time/store', views.storeMeetingTime,name='storeMeetingTime'),
     path('room/', views.room,name='room'),
     path('room/store', views.storeRoom,name='storeRoom'),
+    path('schedule/classes', views.scheduleSem,name='scheduleSem'),
     path('schedule/', views.schedule,name='schedule'),
 ]

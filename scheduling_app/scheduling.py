@@ -13,7 +13,7 @@ class Data:
         self._depts= [];
         rooms = R.objects.all()
         instructors = I.objects.all()
-        courses = C.objects.all()
+        courses = C.objects.filter(status=1)
         departments = D.objects.all()
         times = MT.objects.all()
 
@@ -32,7 +32,8 @@ class Data:
         self._dept_course=[]
         for i in range(len(departments)):
             for courses in departments[i].course_set.all():
-                self._dept_course.append(Course(courses.number, courses.name, courses.sem,[Instructor(courses.instructors.id,courses.instructors.name)],courses.maxNoOfStudents, courses.periodPerWeek, courses.type))
+                if courses.status==str(1):
+                    self._dept_course.append(Course(courses.number, courses.name, courses.sem,[Instructor(courses.instructors.id,courses.instructors.name)],courses.maxNoOfStudents, courses.periodPerWeek, courses.type))
             self._depts.append(Department(departments[i].name,self._dept_course))
             self._dept_course=[]
         
@@ -350,3 +351,5 @@ def generate_schedule():
     print("\n\n")
     print(len(schedule))
     return(schedule[len(schedule)-1])
+
+# generate_schedule()
