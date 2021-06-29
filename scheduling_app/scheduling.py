@@ -6,14 +6,14 @@ from scheduling_app.models import Course as C, Instructor as I, Room as R, Meeti
 POPULATION_SIZE = 15
 NUMB_OF_ELITE_SCHEDULES = 1
 TOURNAMENT_SELECTION_SIZE = 3
-MUTATION_RATE = 0.1
+MUTATION_RATE = 0.01
 class Data:
     def __init__(self):
         self._rooms = []; self._meetingTimes=[]; self._instructors= []; self._courses=[];
         self._depts= [];
         rooms = R.objects.all()
         instructors = I.objects.all()
-        courses = C.objects.filter(status=1)
+        # courses = C.objects.filter(status=1)
         departments = D.objects.all()
         times = MT.objects.all()
 
@@ -26,8 +26,8 @@ class Data:
         for instructor in instructors:
             self._instructors.append(Instructor(instructor.id, instructor.name))  
 
-        for i in range(len(courses)):
-            self._courses.append(Course(courses[i].number, courses[i].name, courses[i].sem,[Instructor(courses[i].instructors.id,courses[i].instructors.name)],courses[i].maxNoOfStudents, courses[i].periodPerWeek, courses[i].type)) #[] removed from instructor     
+        # for i in range(len(courses)):
+        #     self._courses.append(Course(courses[i].number, courses[i].name, courses[i].sem,[Instructor(courses[i].instructors.id,courses[i].instructors.name)],courses[i].maxNoOfStudents, courses[i].periodPerWeek, courses[i].type)) #[] removed from instructor     
         
         self._dept_course=[]
         for i in range(len(departments)):
@@ -43,7 +43,7 @@ class Data:
             
     def get_rooms(self): return self._rooms
     def get_instructors(self): return self._instructors
-    def get_courses(self): return self._courses
+    # def get_courses(self): return self._courses
     def get_depts(self): return self._depts
     def get_meetingTimes(self): return self._meetingTimes
     def get_numberOfClasses(self): return self._numberOfClasses
@@ -258,19 +258,19 @@ class DisplayManager:
             tempStr += courses[len(courses)-1].__str__() + "]"
             availableDeptsTable.add_row([depts.__getitem__(i).get_name(), tempStr])
         print(availableDeptsTable)
-    def print_course(self):
-        print("-- All Available Courses with respective Instructors --")
-        courses = main_Data().get_courses()
-        availableCoursesTable = prettytable.PrettyTable(['ID', 'Course', 'Max Number of Students', 'Instructors'])
-        for i in range(0, len(courses)):
-            instructors = courses[i].get_instructors()
-            tempStr =""
-            for j in range(0, len(instructors)-1):
-                tempStr += instructors[j].__str__() +","
-            tempStr += instructors[len(instructors)-1].__str__()
-            availableCoursesTable.add_row(
-                [courses[i].get_number(), courses[i].get_name(), str(courses[i].get_maxNumbOfStudents()), tempStr])
-        print(availableCoursesTable)
+    # def print_course(self):
+    #     print("-- All Available Courses with respective Instructors --")
+    #     courses = main_Data().get_courses()
+    #     availableCoursesTable = prettytable.PrettyTable(['ID', 'Course', 'Max Number of Students', 'Instructors'])
+    #     for i in range(0, len(courses)):
+    #         instructors = courses[i].get_instructors()
+    #         tempStr =""
+    #         for j in range(0, len(instructors)-1):
+    #             tempStr += instructors[j].__str__() +","
+    #         tempStr += instructors[len(instructors)-1].__str__()
+    #         availableCoursesTable.add_row(
+    #             [courses[i].get_number(), courses[i].get_name(), str(courses[i].get_maxNumbOfStudents()), tempStr])
+        # print(availableCoursesTable)
     def print_instructor(self):
         print("-- All Available Instructors--")
         availableInstructorsTable = prettytable.PrettyTable(['ID', 'Instructor'])
@@ -334,12 +334,12 @@ def generate_schedule():
     print("\nGeneration: " + str(generationNumber))
     population = Population(POPULATION_SIZE)
     population.get_schedules().sort(key=lambda x: x.get_fitness(),reverse=True)
-    # displayMgr.print_generation(population)
-    # displayMgr.print_schedule_as_table(population.get_schedules()[0])
+    displayMgr.print_generation(population)
+    displayMgr.print_schedule_as_table(population.get_schedules()[0])
     geneticAlgorithm = GeneticAlgorithm()
     schedule=[]
     while (population.get_schedules()[0].get_fitness() != 1):
-        if(generationNumber==1):
+        if(generationNumber==150):
             break
         generationNumber += 1
         print("\n> Generation # " + str(generationNumber))

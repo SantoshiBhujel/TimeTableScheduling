@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from .models import Course, Instructor, Room, MeetingTime, Department, Semester
+from .models import Course, Instructor, Room, MeetingTime, Department
 from django.template import loader
 from django.shortcuts import redirect, render, get_object_or_404
 from . import scheduling

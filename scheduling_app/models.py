@@ -53,6 +53,3 @@ class Course(models.Model):
     def get_name(self): return self.name
     def __str__(self): return self.name
     
-class Semester(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    sem = models.IntegerField()
