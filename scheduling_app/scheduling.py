@@ -1,11 +1,14 @@
 # from scheduling.scheduling_app.views import course
 import prettytable as prettytable
 import random as rnd
+import pandas as pd
+import time
+from csv import writer
 from scheduling_app.models import Course as C, Instructor as I, Room as R, MeetingTime as MT, Department as D
 
-POPULATION_SIZE = 10
-NUMB_OF_ELITE_SCHEDULES = 5
-TOURNAMENT_SELECTION_SIZE = 3
+POPULATION_SIZE = 15
+NUMB_OF_ELITE_SCHEDULES = 1
+TOURNAMENT_SELECTION_SIZE = 1
 MUTATION_RATE = 0.01
 class Data:
     def __init__(self):
@@ -365,20 +368,48 @@ def generate_schedule():
     geneticAlgorithm = GeneticAlgorithm()
     schedule=[]
     fitness=[]
+    generation=[]
+    single_loop_execution_time=[]
+    loop_start_time = time.time()
     while (population.get_schedules()[0].get_fitness() != 1):
+        start = time.time()
         if(generationNumber==150):
             break
+        generation.append(generationNumber)
         generationNumber += 1
         print("\n> Generation # " + str(generationNumber))
         population = geneticAlgorithm.evolve(population)
-        population.get_schedules().sort(key=lambda x: x.get_fitness(), reverse=True)
-        displayMgr.print_generation(population)
+        # population.get_schedules().sort(key=lambda x: x.get_fitness(), reverse=True)
+        # displayMgr.print_generation(population)
         displayMgr.print_schedule_as_table(population.get_schedules()[0])
         schedule.append(population.get_schedules()[0])
         fitness.append(population.get_schedules()[0].get_fitness() )
-    print("\n\n")
-    print(len(schedule))
-    print(fitness)
+        single_loop_execution_time.append(time.time() - start) 
+        
+    loop_end= time.time() - loop_start_time
+    print(loop_end)
+    print(single_loop_execution_time)
+    fitness_dict={
+        'Generation' : generation,
+        'Fitness' : fitness
+    }
+    fitness_execution_dict={
+        'Generation' : generation,
+        'Execution Time': single_loop_execution_time,
+        'Fitness' : fitness
+    }
+    df1 = pd.DataFrame(fitness_dict)
+    df1.to_csv("fitness_.csv", index=False)
+    df2 = pd.DataFrame(fitness_execution_dict)
+    df2.to_csv("fitness_execution.csv", index=False)
+    
+    with open('population_execution.csv', 'a') as f_object:
+        writer_object = writer(f_object)
+        writer_object.writerow([POPULATION_SIZE, loop_end])
+        f_object.close()
+    # print("\n\n")
+    # print(len(schedule))
+    # print(fitness)
     return(schedule[len(schedule)-1])
 
 # generate_schedule()
